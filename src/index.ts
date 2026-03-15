@@ -1,3 +1,4 @@
+import path from "path";
 import "dotenv/config";
 import "reflect-metadata";
 import express from "express";
@@ -28,6 +29,13 @@ AppDataSource.initialize()
         app.use("/users", userRoutes);
         app.use("/tasks", taskRoutes);
         app.use("/statuses", statusRoutes);
+
+	const frontendPath = path.join(__dirname, "../frontend/dist");
+        app.use(express.static(frontendPath));
+
+	app.use((_req, res) => {
+  		res.sendFile(path.join(frontendPath, "index.html"));
+	});
         console.log("Database connected");
         app.listen(PORT, "0.0.0.0", () => {
             console.log(`Server started on port ${PORT}`);

@@ -16,7 +16,7 @@ export const AppDataSource = new DataSource({
     port: parseInt(process.env.DB_PORT ?? "5432", 10),
     username: process.env.DB_USERNAME ?? "postgres",
     password: process.env.DB_PASSWORD ?? "",
-    database: process.env.DB_DATABASE ?? "task_manager",
+    database: process.env.DB_DATABASE ?? "postgres",
 
     ssl: useSSL
         ? { rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED !== "false" }
