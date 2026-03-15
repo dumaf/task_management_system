@@ -6,7 +6,8 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
 const router = Router();
-const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) throw new Error("JWT_SECRET environment variable is not set");
 
 // Hash function - using md5 as anything more is not required at this moment
 const hashPassword = (password: string) => {

@@ -32,7 +32,7 @@ export default function KanbanBoard({ onLogout }: KanbanBoardProps) {
   const getToken = () => localStorage.getItem('token');
 
   const apiPost = async (url: string, body: object) => {
-    return fetch(`http://localhost:3000${url}`, {
+    return fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${getToken()}` },
       body: JSON.stringify(body),
@@ -40,7 +40,7 @@ export default function KanbanBoard({ onLogout }: KanbanBoardProps) {
   };
 
   const apiPut = async (url: string, body: object) => {
-    return fetch(`http://localhost:3000${url}`, {
+    return fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${getToken()}` },
       body: JSON.stringify(body),
@@ -48,15 +48,15 @@ export default function KanbanBoard({ onLogout }: KanbanBoardProps) {
   };
 
   const apiDelete = async (url: string) => {
-    return fetch(`http://localhost:3000${url}`, { method: 'DELETE', headers: { Authorization: `Bearer ${getToken()}` } });
+    return fetch(url, { method: 'DELETE', headers: { Authorization: `Bearer ${getToken()}` } });
   };
 
   const fetchBoardData = async () => {
     try {
       const headers = { 'Content-Type': 'application/json', Authorization: `Bearer ${getToken()}` };
       const [statusesRes, tasksRes] = await Promise.all([
-        fetch('http://localhost:3000/statuses', { headers }),
-        fetch('http://localhost:3000/tasks', { headers }),
+        fetch('/statuses', { headers }),
+        fetch('/tasks', { headers }),
       ]);
 
       if (statusesRes.status === 401 || tasksRes.status === 401) {

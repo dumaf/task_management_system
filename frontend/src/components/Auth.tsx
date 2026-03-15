@@ -29,7 +29,7 @@ export default function Auth({ onLogin }: AuthProps) {
 
     try {
       if (isLogin) {
-        const response = await fetch('http://localhost:3000/users/login', {
+        const response = await fetch('/users/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
@@ -39,7 +39,7 @@ export default function Auth({ onLogin }: AuthProps) {
         localStorage.setItem('token', data.token);
         onLogin(data.token);
       } else {
-        const response = await fetch('http://localhost:3000/users/register', {
+        const response = await fetch('/users/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ firstName, lastName, email, password }),
