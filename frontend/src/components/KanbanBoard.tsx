@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable, type DropResult } from '@hello-pangea/dnd';
+import ChatSidebar from './ChatSidebar';
 
 interface Status {
   id: number;
@@ -394,6 +395,13 @@ export default function KanbanBoard({ onLogout }: KanbanBoardProps) {
           })}
         </div>
       </DragDropContext>
+
+      {/* AI Chatbot Sidebar */}
+      <ChatSidebar
+        columns={columns}
+        tasks={tasks}
+        fetchBoardData={fetchBoardData}
+      />
     </div>
   );
 }

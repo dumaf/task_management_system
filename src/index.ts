@@ -9,6 +9,7 @@ import { AppDataSource } from "./data-sources";
 import userRoutes from "./back_routes/userRoutes";
 import taskRoutes from "./back_routes/taskRoutes";
 import statusRoutes from "./back_routes/statusRoutes";
+import chatRoutes from "./back_routes/chatRoutes";
 
 const app = express();
 const PORT = parseInt(process.env.PORT ?? "3000", 10);
@@ -29,6 +30,7 @@ AppDataSource.initialize()
         app.use("/users", userRoutes);
         app.use("/tasks", taskRoutes);
         app.use("/statuses", statusRoutes);
+        app.use("/chat", chatRoutes);
 
 	const frontendPath = path.join(__dirname, "../frontend/dist");
         app.use(express.static(frontendPath));
